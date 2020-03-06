@@ -1,0 +1,17 @@
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\CenterApp.exe.config
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\CenterApp.exe
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\CenterApp.pdb
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.csprojAssemblyReference.cache
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.Form1.resources
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.Properties.Resources.resources
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.csproj.GenerateResource.cache
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.csproj.CoreCompileInputs.cache
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.exe
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.pdb
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\obj\Debug\CenterApp.csproj.CopyComplete
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\FireSharp.dll
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\FireSharp.Serialization.JsonNet.dll
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\RestSharp.dll
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\CenterApp\CenterApp\bin\Debug\RestSharp.xml
