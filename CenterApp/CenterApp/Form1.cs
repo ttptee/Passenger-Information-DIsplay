@@ -29,10 +29,10 @@ namespace CenterApp
         int i = 0;
         int s = 1; //แทนสถานนีที่อยู่
         string state = "N"; //state click Normal
-       // string[] Station = new string[] { "StationA", "StationB", "StationC" };
-        
-        //check จำนวน สถานี
-        int fileCountStation = Directory.GetDirectories("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/").Length; // test เช็คจำนวน flie
+                            // string[] Station = new string[] { "StationA", "StationB", "StationC" };
+
+        //check จำนวน สถานีC:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\CenterApp\PIC
+        int fileCountStation = Directory.GetDirectories("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/").Length; // test เช็คจำนวน flie
         //check file
        // int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/StationA", "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
 
@@ -59,7 +59,7 @@ namespace CenterApp
             SetResponse response = await Client.SetTaskAsync("Station/", dataStation);
             for (int loopcheck = 1; loopcheck <= fileCountStation; loopcheck++)
             {
-                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/E" + loopcheck, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
+                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/E" + loopcheck, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
                 Console.Write("Station E{0}", loopcheck);
                 Console.WriteLine("  PicCount : {0}", fileCountPIC);
                 var PicStation = new DataPic {
@@ -160,14 +160,14 @@ namespace CenterApp
             ////////////////////////normal state//////////////////////////////
             if(state == "N") { 
                 
-                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/E" + s, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
+                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/E" + s, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
             Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<E" + s+"-----i :"+i);
             
 
                 if (fileCountPIC == i)
                 {
                     i = 0;
-                if (s <= fileCountStation)
+                if (s < fileCountStation)
                 {
                     s++;
                 }
@@ -178,8 +178,8 @@ namespace CenterApp
                 StationID1.Text = "E" + s;
                 i++;
             Console.WriteLine("i = " + i);
-            pictureBox1.Image = Image.FromFile("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/E" + s + "/" + i + ".png");
-                Console.WriteLine("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/E" + s + "/" + i + ".png");
+            pictureBox1.Image = Image.FromFile("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/E" + s + "/" + i + ".png");
+                Console.WriteLine("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/E" + s + "/" + i + ".png");
                 ///////////////////////////////////////////////test save 
                 MemoryStream ms = new MemoryStream();
                 pictureBox1.Image.Save(ms, ImageFormat.Png);
@@ -202,7 +202,7 @@ namespace CenterApp
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
             else
             {
-                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/"+state, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
+                int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/" + state, "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
                 Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<E" + s + "-----i :" + i);
 
 
@@ -217,8 +217,8 @@ namespace CenterApp
                 StationID1.Text = state;
                 i++;
                 Console.WriteLine("i = " + i);
-                pictureBox1.Image = Image.FromFile("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/"+state+ "/" + i + ".png");
-                Console.WriteLine("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/" +state+ "/" + i + ".png");
+                pictureBox1.Image = Image.FromFile("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/" + state+ "/" + i + ".png");
+                Console.WriteLine("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/" + state+ "/" + i + ".png");
                 ///////////////////////
             
 
