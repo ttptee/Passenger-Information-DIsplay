@@ -36,6 +36,7 @@
             this.ResetBTN = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.button1 = new System.Windows.Forms.Button();
+            this.LoadTxt = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -43,12 +44,13 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 3000;
+            this.timer1.Interval = 1500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.LoadTxt);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.StationID1);
@@ -75,6 +77,7 @@
             this.StationID1.Size = new System.Drawing.Size(64, 29);
             this.StationID1.TabIndex = 0;
             this.StationID1.Text = "Wait";
+            this.StationID1.Visible = false;
             // 
             // ResetBTN
             // 
@@ -107,6 +110,16 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // LoadTxt
+            // 
+            this.LoadTxt.AutoSize = true;
+            this.LoadTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.LoadTxt.Location = new System.Drawing.Point(-23, 196);
+            this.LoadTxt.Name = "LoadTxt";
+            this.LoadTxt.Size = new System.Drawing.Size(585, 135);
+            this.LoadTxt.TabIndex = 3;
+            this.LoadTxt.Text = "Loading...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -135,6 +148,7 @@
         private System.Windows.Forms.Button ResetBTN;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LoadTxt;
     }
 }
 

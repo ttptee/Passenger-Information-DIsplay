@@ -156,6 +156,8 @@ namespace ClientApp
                 Bitmap bm = new Bitmap(ms, false);
                 ms.Dispose();
                 pictureBox1.Image = bm;
+                
+                
 
                 if (fileCountStation == s && i == fileCountPIC)
                 {
@@ -166,6 +168,48 @@ namespace ClientApp
 
             }
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            else
+            {
+                Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + state);
+                Data PicCount = StationPic.ResultAs<Data>();
+
+                Console.WriteLine("PIC IN " + state + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
+                int fileCountPIC = PicCount.CountPIC;
+
+
+
+                if (fileCountPIC == i)
+                {
+                    i = 0;
+                    
+                }
+                //StationID.Text = Station[i].ToString();
+                StationID1.Text = state;
+                i++;
+                Console.WriteLine("i = " + i);
+
+
+                FirebaseResponse response = await Client.GetTaskAsync("Station/" + state + "/Img" + i + "/");
+                Console.WriteLine("Station/" + state + "/Img" + i + "/Img/");
+                Image_Model image = response.ResultAs<Image_Model>();
+                byte[] a = Convert.FromBase64String(image.Img);
+                MemoryStream ms = new MemoryStream();
+                ms.Write(a, 0, Convert.ToInt32(a.Length));
+                Bitmap bm = new Bitmap(ms, false);
+                ms.Dispose();
+                pictureBox1.Image = bm;
+
+
+
+                if (fileCountStation == s && i == fileCountPIC)
+                {
+                    s = 1;
+                    i = 0;
+                    Console.WriteLine("Reset!!");
+                }
+            }
         }
 
         private void ResetBTN_Click(object sender, EventArgs e)

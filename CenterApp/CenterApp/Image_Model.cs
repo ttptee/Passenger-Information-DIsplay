@@ -8,6 +8,7 @@ namespace CenterApp
 {
     class Image_Model
     {
+        public string ImageID { get; set; }
         public string Img { get; set; }
         public string StationID { get; set; }
         public string TypeName { get; set; }

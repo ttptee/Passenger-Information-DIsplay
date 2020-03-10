@@ -17,6 +17,8 @@ namespace CenterApp
 {
     public partial class Form2 : Form
     {
+       
+        int s = 1;//ชี้สถานี
         int CountPic;
         IFirebaseConfig config = new FirebaseConfig
         {
@@ -41,6 +43,7 @@ namespace CenterApp
             FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
             Data dataCount = StationData.ResultAs<Data>();
             Console.WriteLine(" Station total : " + dataCount.DataStation);//เช็คจำนวนสถานีใน firebase
+            ReDt();
         }
 
         private void button1_Click(object sender, EventArgs e)//Browse Image
@@ -51,7 +54,7 @@ namespace CenterApp
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image img = new Bitmap(ofd.FileName);
-                pictureBox1.Image = img.GetThumbnailImage(175,150,null,new IntPtr());
+                pictureBox1.Image = img.GetThumbnailImage(770,350,null,new IntPtr());
 
             }
         }
@@ -62,21 +65,96 @@ namespace CenterApp
             pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
             byte[] a = ms.GetBuffer();
             string output = Convert.ToBase64String(a);
-
+            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + TbIDstation.Text);
+            Data PicCount = StationPic.ResultAs<Data>();
             var Data = new Image_Model
             {
-
+                ImageID = "Img"+PicCount.CountPIC+1,
                 Img = output,
+                TypeName = TypeTB.Text
                 
             };
-            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" +TbIDstation.Text );
-            Data PicCount = StationPic.ResultAs<Data>();
+            
             Console.WriteLine("Station/" + TbIDstation.Text);
             Console.WriteLine(" Pic total : " + PicCount.CountPIC);
-            SetResponse response3 = await Client.SetTaskAsync("Station/" + TbIDstation.Text + "/Img" + PicCount.CountPIC, Data);
+            int i = PicCount.CountPIC + 1;
+            var PicStation = new DataPic
+            {
+                CountPIC = i
+            };
+            SetResponse response2 = await Client.SetTaskAsync("Station/" + TbIDstation.Text, PicStation);
+            SetResponse response3 = await Client.SetTaskAsync("Station/" + TbIDstation.Text + "/Img" + i, Data);
             Image_Model result = response3.ResultAs<Image_Model>();
+            ReDt();
+        }
+        private async void ReDt()
+        {
+            dt.Rows.Clear();
+            int checkloopReDt = 0;
+            FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
+            Data dataCount = StationData.ResultAs<Data>();
+
+
+            int Station = dataCount.DataStation;
+            
+            while(true)
+            {
+                if (checkloopReDt == Station)
+                {
+                    
+                    break;
+                }
+                checkloopReDt++;
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + checkloopReDt);
+                Data PicCount = StationPic.ResultAs<Data>();
+                for(int x = 1; x <= PicCount.CountPIC; x++)
+                {
+                    try
+                    {
+                        FirebaseResponse resp = await Client.GetTaskAsync("Station/E" + checkloopReDt);
+                        FirebaseResponse response = await Client.GetTaskAsync("Station/E" + checkloopReDt + "/Img" + x + "/");
+                        Data obj = resp.ResultAs<Data>();
+                        Data obj2 = response.ResultAs<Data>();
+
+                        DataGridViewRow row = (DataGridViewRow)dt.Rows[0].Clone();
+                        row.Cells[0].Value = obj.ID;
+                        row.Cells[1].Value = obj2.ImageID;
+                        row.Cells[2].Value = obj2.TypeName;
+
+                        
+                        
+                        Image_Model image = response.ResultAs<Image_Model>();
+                        byte[] a = Convert.FromBase64String(image.Img);
+                        MemoryStream ms = new MemoryStream();
+                        ms.Write(a, 0, Convert.ToInt32(a.Length));
+                        Bitmap bm = new Bitmap(ms, false);
+                        row.Cells[3].Value = bm;
+                        dt.Rows.Add(row);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+               
+               
+                    
+            }
+
+
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                //TODO - Button Clicked - Execute Code Here
+                MessageBox.Show("test"); 
+            }
         }
 
-      
+
     }
 }
