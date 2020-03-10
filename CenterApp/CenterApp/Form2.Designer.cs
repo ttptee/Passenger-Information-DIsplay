@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TypeTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -42,16 +41,10 @@
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.TbIDstation = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(108, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 0;
             // 
             // label1
             // 
@@ -62,17 +55,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "รหัสสถานี(E...)";
             // 
-            // textBox2
+            // TypeTB
             // 
-            this.textBox2.Location = new System.Drawing.Point(108, 78);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 2;
+            this.TypeTB.Location = new System.Drawing.Point(108, 131);
+            this.TypeTB.Name = "TypeTB";
+            this.TypeTB.Size = new System.Drawing.Size(100, 22);
+            this.TypeTB.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 82);
+            this.label2.Location = new System.Drawing.Point(30, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 17);
             this.label2.TabIndex = 3;
@@ -81,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 129);
+            this.label3.Location = new System.Drawing.Point(33, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 5;
@@ -89,7 +82,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(15, 176);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 199);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(241, 195);
             this.pictureBox1.TabIndex = 6;
@@ -97,13 +90,13 @@
             // 
             // SentBtn
             // 
-            this.SentBtn.Location = new System.Drawing.Point(67, 388);
+            this.SentBtn.Location = new System.Drawing.Point(65, 400);
             this.SentBtn.Name = "SentBtn";
             this.SentBtn.Size = new System.Drawing.Size(116, 38);
             this.SentBtn.TabIndex = 7;
             this.SentBtn.Text = "ส่ง";
             this.SentBtn.UseVisualStyleBackColor = true;
-            this.SentBtn.Click += new System.EventHandler(this.SentBtn_Click);
+            this.SentBtn.Click += new System.EventHandler(this.SentBtn_ClickAsync);
             // 
             // dt
             // 
@@ -155,7 +148,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(108, 129);
+            this.button1.Location = new System.Drawing.Point(108, 162);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 31);
             this.button1.TabIndex = 4;
@@ -163,20 +156,35 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // TbIDstation
+            // 
+            this.TbIDstation.AllowDrop = true;
+            this.TbIDstation.FormattingEnabled = true;
+            this.TbIDstation.ItemHeight = 16;
+            this.TbIDstation.Items.AddRange(new object[] {
+            "E1",
+            "E2",
+            "E3",
+            "E4"});
+            this.TbIDstation.Location = new System.Drawing.Point(108, 34);
+            this.TbIDstation.Name = "TbIDstation";
+            this.TbIDstation.Size = new System.Drawing.Size(120, 84);
+            this.TbIDstation.TabIndex = 9;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TbIDstation);
             this.Controls.Add(this.dt);
             this.Controls.Add(this.SentBtn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TypeTB);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -188,10 +196,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TypeTB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -203,5 +209,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Image;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox TbIDstation;
     }
 }

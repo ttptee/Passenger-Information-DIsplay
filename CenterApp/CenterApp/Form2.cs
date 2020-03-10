@@ -1,5 +1,6 @@
 ﻿using FireSharp.Config;
 using FireSharp.Interfaces;
+using FireSharp.Response;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace CenterApp
 {
     public partial class Form2 : Form
     {
+        int CountPic;
         IFirebaseConfig config = new FirebaseConfig
         {
             AuthSecret = "ftgI36IikveERXJ41pXGVWCfKdXvBnpSJIWpIkbe",
@@ -27,16 +29,25 @@ namespace CenterApp
         {
             InitializeComponent();
         }
-        private void Form2_Load(object sender, EventArgs e)
+        private async void Form2_Load(object sender, EventArgs e)
         {
             Client = new FireSharp.FirebaseClient(config);
+            
+
+            var dataStion = new Data
+            {
+                DataStation = 0
+            };
+            FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
+            Data dataCount = StationData.ResultAs<Data>();
+            Console.WriteLine(" Station total : " + dataCount.DataStation);//เช็คจำนวนสถานีใน firebase
         }
 
         private void button1_Click(object sender, EventArgs e)//Browse Image
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select Img";
-            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+            ofd.Filter = "Image Files(*.PNG;*.JPG;*.GIF)|*.PNG;*.JPG;*.GIF|All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image img = new Bitmap(ofd.FileName);
@@ -45,19 +56,25 @@ namespace CenterApp
             }
         }
 
-        private void SentBtn_Click(object sender, EventArgs e)
+        private async void SentBtn_ClickAsync(object sender, EventArgs e)
         {
             MemoryStream ms = new MemoryStream();
-            pictureBox1.Image.Save(ms, ImageFormat.Png);
+            pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
             byte[] a = ms.GetBuffer();
             string output = Convert.ToBase64String(a);
 
             var Data = new Image_Model
             {
-                Img = output
+
+                Img = output,
+                
             };
-           // SetResponse response3 = await Client.SetTaskAsync("Station/E" + s + "/Img" + i, dataimage);
-           // Image_Model result = response3.ResultAs<Image_Model>();
+            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" +TbIDstation.Text );
+            Data PicCount = StationPic.ResultAs<Data>();
+            Console.WriteLine("Station/" + TbIDstation.Text);
+            Console.WriteLine(" Pic total : " + PicCount.CountPIC);
+            SetResponse response3 = await Client.SetTaskAsync("Station/" + TbIDstation.Text + "/Img" + PicCount.CountPIC, Data);
+            Image_Model result = response3.ResultAs<Image_Model>();
         }
 
       
