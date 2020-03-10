@@ -35,7 +35,7 @@ namespace CenterApp
         int fileCountStation = Directory.GetDirectories("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/Passenger-Information-DIsplay/CenterApp/CenterApp/PIC/").Length; // test เช็คจำนวน flie
         //check file
        // int fileCountPIC = Directory.GetFiles("C:/Users/ttpte/Desktop/WORK/ITE/ITE/C#/CenterApp/CenterApp/PIC/StationA", "*.*", SearchOption.AllDirectories).Length; // test เช็คจำนวน flie
-
+       
 
 
         public Form1()
@@ -241,8 +241,15 @@ namespace CenterApp
         private void ResetBTN_Click(object sender, EventArgs e)
         {
             state = "N";
-            
+            s = 1;
+            i = 0;
             MessageBox.Show("Reset"); // display button details
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 Addbtn = new Form2();
+            Addbtn.Show();
         }
     }
 }

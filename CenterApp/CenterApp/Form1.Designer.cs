@@ -35,6 +35,7 @@
             this.StationID1 = new System.Windows.Forms.Label();
             this.ResetBTN = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -48,6 +49,7 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.StationID1);
             this.panel1.Location = new System.Drawing.Point(402, 3);
@@ -76,7 +78,7 @@
             // 
             // ResetBTN
             // 
-            this.ResetBTN.BackColor = System.Drawing.Color.LawnGreen;
+            this.ResetBTN.BackColor = System.Drawing.Color.Crimson;
             this.ResetBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.ResetBTN.ForeColor = System.Drawing.Color.Black;
             this.ResetBTN.Location = new System.Drawing.Point(25, 582);
@@ -91,6 +93,19 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LawnGreen;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(542, 579);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(226, 79);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -119,6 +134,7 @@
         private System.Windows.Forms.Label StationID1;
         private System.Windows.Forms.Button ResetBTN;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

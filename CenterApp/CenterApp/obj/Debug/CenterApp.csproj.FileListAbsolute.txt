@@ -32,3 +32,4 @@ C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\C
 C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\CenterApp\obj\Debug\CenterApp.csproj.CopyComplete
 C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\CenterApp\obj\Debug\CenterApp.exe
 C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\CenterApp\obj\Debug\CenterApp.pdb
+C:\Users\ttpte\Desktop\WORK\ITE\ITE\C#\Passenger-Information-DIsplay\CenterApp\CenterApp\obj\Debug\CenterApp.Form2.resources
