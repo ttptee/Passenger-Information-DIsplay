@@ -263,22 +263,22 @@ namespace CenterApp
             {
                 Form2 Addbtn = new Form2();
                 Addbtn.Show();
-            }
-
-        private void PauseBtn_Click(object sender, EventArgs e)
-        {
-            
-            timer1.Stop();
-            PauseBtn.Visible = false;
-            Restart.Visible = true;
         }
 
-        private void Restart_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-            PauseBtn.Visible = true;
-            Restart.Visible = false;
+         private void PauseBtn_Click(object sender, EventArgs e)
+          {
 
-        }
+        // timer1.Stop();
+        //  PauseBtn.Visible = false;
+        //  Restart.Visible = true;
+           }
+
+           private void Restart_Click(object sender, EventArgs e)
+              {
+        //    timer1.Start();
+        //     PauseBtn.Visible = true;
+        //    Restart.Visible = false;
+        // 
+          }
     }
 }

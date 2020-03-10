@@ -55,7 +55,7 @@ namespace CenterApp
             {
                 Image img = new Bitmap(ofd.FileName);
                 pictureBox1.Image = img.GetThumbnailImage(770,350,null,new IntPtr());
-
+                Console.WriteLine("OFD>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             }
         }
 
@@ -65,11 +65,11 @@ namespace CenterApp
             pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
             byte[] a = ms.GetBuffer();
             string output = Convert.ToBase64String(a);
-            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + TbIDstation.Text);
+            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" +TbIDstation.Text);
             Data PicCount = StationPic.ResultAs<Data>();
                         var Data = new Image_Model
             {
-                ImageID = "Img"+ PicCount.CountPIC + 1,
+                ImageID = "Img"+PicCount.CountPIC+1,
                 Img = output,
                 TypeName = TypeTB.Text
                 
