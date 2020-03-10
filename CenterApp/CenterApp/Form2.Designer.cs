@@ -34,14 +34,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SentBtn = new System.Windows.Forms.Button();
             this.dt = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.TbIDstation = new System.Windows.Forms.ListBox();
-            this.TypeTB = new System.Windows.Forms.ListBox();
             this.StationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.DeleteRowBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TbIDstation = new System.Windows.Forms.ListBox();
+            this.TypeTB = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.SuspendLayout();
@@ -107,6 +107,40 @@
             this.dt.RowTemplate.Height = 24;
             this.dt.Size = new System.Drawing.Size(451, 354);
             this.dt.TabIndex = 8;
+            this.dt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_CellContentClick);
+            // 
+            // StationID
+            // 
+            this.StationID.HeaderText = "StationID";
+            this.StationID.Name = "StationID";
+            this.StationID.Width = 94;
+            // 
+            // IDImage
+            // 
+            this.IDImage.HeaderText = "IDImage";
+            this.IDImage.Name = "IDImage";
+            this.IDImage.Width = 88;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.Width = 69;
+            // 
+            // Image
+            // 
+            this.Image.HeaderText = "Image";
+            this.Image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Image.Name = "Image";
+            this.Image.Width = 52;
+            // 
+            // DeleteRowBtn
+            // 
+            this.DeleteRowBtn.HeaderText = "Delete";
+            this.DeleteRowBtn.Name = "DeleteRowBtn";
+            this.DeleteRowBtn.Text = "Delete";
+            this.DeleteRowBtn.ToolTipText = "Delete";
+            this.DeleteRowBtn.Width = 55;
             // 
             // button1
             // 
@@ -144,39 +178,6 @@
             this.TypeTB.Name = "TypeTB";
             this.TypeTB.Size = new System.Drawing.Size(120, 36);
             this.TypeTB.TabIndex = 10;
-            // 
-            // StationID
-            // 
-            this.StationID.HeaderText = "StationID";
-            this.StationID.Name = "StationID";
-            this.StationID.Width = 94;
-            // 
-            // IDImage
-            // 
-            this.IDImage.HeaderText = "IDImage";
-            this.IDImage.Name = "IDImage";
-            this.IDImage.Width = 88;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.Width = 69;
-            // 
-            // Image
-            // 
-            this.Image.HeaderText = "Image";
-            this.Image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Image.Name = "Image";
-            this.Image.Width = 52;
-            // 
-            // DeleteRowBtn
-            // 
-            this.DeleteRowBtn.HeaderText = "Delete";
-            this.DeleteRowBtn.Name = "DeleteRowBtn";
-            this.DeleteRowBtn.Text = "Delete";
-            this.DeleteRowBtn.ToolTipText = "Delete";
-            this.DeleteRowBtn.Width = 55;
             // 
             // Form2
             // 

@@ -17,7 +17,7 @@ namespace CenterApp
 {
     public partial class Form2 : Form
     {
-       
+
         int s = 1;//ชี้สถานี
         int CountPic;
         IFirebaseConfig config = new FirebaseConfig
@@ -34,7 +34,7 @@ namespace CenterApp
         private async void Form2_Load(object sender, EventArgs e)
         {
             Client = new FireSharp.FirebaseClient(config);
-            
+
 
             var dataStion = new Data
             {
@@ -54,8 +54,8 @@ namespace CenterApp
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image img = new Bitmap(ofd.FileName);
-                pictureBox1.Image = img.GetThumbnailImage(770,350,null,new IntPtr());
-                Console.WriteLine("OFD>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                pictureBox1.Image = img.GetThumbnailImage(770, 350, null, new IntPtr());
+
             }
         }
 
@@ -65,19 +65,20 @@ namespace CenterApp
             pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
             byte[] a = ms.GetBuffer();
             string output = Convert.ToBase64String(a);
-            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" +TbIDstation.Text);
+            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + TbIDstation.Text);
             Data PicCount = StationPic.ResultAs<Data>();
-                        var Data = new Image_Model
+            int i = PicCount.CountPIC + 1;
+            var Data = new Image_Model
             {
-                ImageID = "Img"+PicCount.CountPIC+1,
+                ImageID = "Img" +i,
                 Img = output,
                 TypeName = TypeTB.Text
-                
+
             };
-            
+
             Console.WriteLine("Station/" + TbIDstation.Text);
             Console.WriteLine(" Pic total : " + PicCount.CountPIC);
-            int i = PicCount.CountPIC + 1;
+            
             var PicStation = new DataPic
             {
                 CountPIC = i
@@ -91,23 +92,26 @@ namespace CenterApp
         {
             dt.Rows.Clear();
             int checkloopReDt = 0;
+            
             FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
             Data dataCount = StationData.ResultAs<Data>();
 
 
             int Station = dataCount.DataStation;
-            
-            while(true)
+            Console.WriteLine("--------------------S"+Station);
+            Console.WriteLine("--------------------Ch" + checkloopReDt);
+
+            while (true)
             {
                 if (checkloopReDt == Station)
                 {
-                    
+
                     break;
                 }
                 checkloopReDt++;
                 FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + checkloopReDt);
                 Data PicCount = StationPic.ResultAs<Data>();
-                for(int x = 1; x <= PicCount.CountPIC; x++)
+                for (int x=1; x <= PicCount.CountPIC; x++)
                 {
                     try
                     {
@@ -121,8 +125,8 @@ namespace CenterApp
                         row.Cells[1].Value = obj2.ImageID;
                         row.Cells[2].Value = obj2.TypeName;
 
-                        
-                        
+
+
                         Image_Model image = response.ResultAs<Image_Model>();
                         byte[] a = Convert.FromBase64String(image.Img);
                         MemoryStream ms = new MemoryStream();
@@ -136,9 +140,9 @@ namespace CenterApp
 
                     }
                 }
-               
-               
-                    
+
+
+
             }
 
 
@@ -151,10 +155,13 @@ namespace CenterApp
                 e.RowIndex >= 0)
             {
                 //TODO - Button Clicked - Execute Code Here
-                MessageBox.Show("test"); 
+                MessageBox.Show("test");
             }
         }
 
-
+        private void dt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
     }
 }
