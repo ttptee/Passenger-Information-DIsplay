@@ -37,6 +37,8 @@
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.button1 = new System.Windows.Forms.Button();
             this.LoadTxt = new System.Windows.Forms.Label();
+            this.PauseBtn = new System.Windows.Forms.Button();
+            this.Restart = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -44,12 +46,14 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1500;
+            this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.Restart);
+            this.panel1.Controls.Add(this.PauseBtn);
             this.panel1.Controls.Add(this.LoadTxt);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -120,6 +124,29 @@
             this.LoadTxt.TabIndex = 3;
             this.LoadTxt.Text = "Loading...";
             // 
+            // PauseBtn
+            // 
+            this.PauseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.PauseBtn.Location = new System.Drawing.Point(84, 579);
+            this.PauseBtn.Name = "PauseBtn";
+            this.PauseBtn.Size = new System.Drawing.Size(277, 79);
+            this.PauseBtn.TabIndex = 4;
+            this.PauseBtn.Text = "Pause";
+            this.PauseBtn.UseVisualStyleBackColor = true;
+            this.PauseBtn.Click += new System.EventHandler(this.PauseBtn_Click);
+            // 
+            // Restart
+            // 
+            this.Restart.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Restart.Location = new System.Drawing.Point(84, 579);
+            this.Restart.Name = "Restart";
+            this.Restart.Size = new System.Drawing.Size(277, 79);
+            this.Restart.TabIndex = 5;
+            this.Restart.Text = "Restart";
+            this.Restart.UseVisualStyleBackColor = true;
+            this.Restart.Visible = false;
+            this.Restart.Click += new System.EventHandler(this.Restart_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -149,6 +176,8 @@
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label LoadTxt;
+        private System.Windows.Forms.Button PauseBtn;
+        private System.Windows.Forms.Button Restart;
     }
 }
 

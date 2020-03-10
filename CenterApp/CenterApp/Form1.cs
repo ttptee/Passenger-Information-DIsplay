@@ -146,10 +146,11 @@ namespace CenterApp
         private async void timer1_Tick(object sender, EventArgs e)
         {
 
-
+           
 
 
             ////////////////////////normal state//////////////////////////////
+
             if (state == "N")
             {
                 FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + s);
@@ -160,7 +161,7 @@ namespace CenterApp
 
 
 
-                if (fileCountPIC == i)
+                if (i == fileCountPIC)
                 {
                     i = 0;
                     if (s <= fileCountStation)
@@ -263,6 +264,21 @@ namespace CenterApp
                 Form2 Addbtn = new Form2();
                 Addbtn.Show();
             }
-        
+
+        private void PauseBtn_Click(object sender, EventArgs e)
+        {
+            
+            timer1.Stop();
+            PauseBtn.Visible = false;
+            Restart.Visible = true;
+        }
+
+        private void Restart_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            PauseBtn.Visible = true;
+            Restart.Visible = false;
+
+        }
     }
 }

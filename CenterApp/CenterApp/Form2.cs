@@ -67,9 +67,9 @@ namespace CenterApp
             string output = Convert.ToBase64String(a);
             FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + TbIDstation.Text);
             Data PicCount = StationPic.ResultAs<Data>();
-            var Data = new Image_Model
+                        var Data = new Image_Model
             {
-                ImageID = "Img"+PicCount.CountPIC+1,
+                ImageID = "Img"+ PicCount.CountPIC + 1,
                 Img = output,
                 TypeName = TypeTB.Text
                 
