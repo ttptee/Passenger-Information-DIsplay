@@ -147,21 +147,37 @@ namespace CenterApp
 
 
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var senderGrid = (DataGridView)sender;
+      
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+        private async void dt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
             {
-                //TODO - Button Clicked - Execute Code Here
-                MessageBox.Show("test");
-            }
-        }
+                int i,j;
+                i = e.RowIndex;
+                j = e.ColumnIndex;
+                
+              //  MessageBox.Show((i+1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
+                try
+                {
+                    FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + dt.Rows[i].Cells["StationID"].Value.ToString()+"");
+                    Data PicCount = StationPic.ResultAs<Data>();
+                    int checkImage = PicCount.CountPIC;
+                    string value = dt.Rows[i].Cells["StationID"].Value.ToString();
+                    MessageBox.Show(value+ " -------- "+checkImage);
+                  //  var result = Client.Delete("Station/" + dt.Rows[i].Cells["StationID"].Value.ToString() +"/"+ dt.Rows[i].Cells["IdImage"].Value.ToString());
+                    //ReDt();
+                }
+                catch
+                {
 
-        private void dt_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
+                }
+                
+
+
+
+
+            }
         }
     }
 }

@@ -121,6 +121,8 @@ namespace CenterApp
                 // will be based on the Location and Size of button
                 LoadTxt.Visible = false;
                 StationID1.Visible = true;
+                ResetBTN.Visible = true;
+                Addbtn.Visible = true;
                 Controls.Add(dynamicButton);
                 
 
