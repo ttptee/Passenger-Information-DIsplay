@@ -20,8 +20,8 @@ namespace CenterApp
     {
         IFirebaseConfig config = new FirebaseConfig
         {
-            AuthSecret = "ftgI36IikveERXJ41pXGVWCfKdXvBnpSJIWpIkbe",
-            BasePath = "https://testprojectstation.firebaseio.com/"
+            AuthSecret = "GfvGa4YJADEQl3KFI5JXgiNzMxgZp87ms99BpiFU",
+            BasePath = "https://passenger-information-di-234e1.firebaseio.com/"
         };
         IFirebaseClient Client;
 
@@ -55,7 +55,7 @@ namespace CenterApp
             {
                 DataStation = 0
             };
-            FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
+            FirebaseResponse StationData = await Client.GetTaskAsync("Stationn/");
             Data dataCount = StationData.ResultAs<Data>();
             Console.WriteLine(" Station total : " + dataCount.DataStation);//เช็คจำนวนสถานีใน firebase
 
@@ -63,7 +63,7 @@ namespace CenterApp
             Console.WriteLine("fileCountStationbefore : " + fileCountStation);
             for (int loopcheck = 1; loopcheck <= dataCount.DataStation; loopcheck++)
             {
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + loopcheck);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + loopcheck);
                 Data PicCount = StationPic.ResultAs<Data>();
 
                 Console.WriteLine("PIC IN E" + loopcheck + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
@@ -135,7 +135,7 @@ namespace CenterApp
             MessageBox.Show(btn.Name + " Clicked"); // display button details
             state = btn.Name;
             i = 0;
-            Console.WriteLine("state : " + state);
+            Console.WriteLine("ID : " + state);
 
 
         }
@@ -155,7 +155,7 @@ namespace CenterApp
 
             if (state == "N")
             {
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + s);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + s);
                 Data PicCount = StationPic.ResultAs<Data>();
 
                 Console.WriteLine("PIC IN E" + s + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
@@ -174,20 +174,26 @@ namespace CenterApp
 
                 }
                 //StationID.Text = Station[i].ToString();
-                StationID1.Text = "E" + s;
+                StationID1.Text = "ID" + s;
                 i++;
                 Console.WriteLine("i = " + i);
 
-
-                FirebaseResponse response = await Client.GetTaskAsync("Station/E" + s + "/Img" + i + "/");
-                Console.WriteLine("Station/E" + s + "/Img" + i + "/Img/");
-                Image_Model image = response.ResultAs<Image_Model>();
-                byte[] a = Convert.FromBase64String(image.Img);
-                MemoryStream ms = new MemoryStream();
-                ms.Write(a, 0, Convert.ToInt32(a.Length));
-                Bitmap bm = new Bitmap(ms, false);
-                ms.Dispose();
-                pictureBox1.Image = bm;
+                try
+                {
+                    FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + s + "/Img" + i + "/");
+                    Console.WriteLine("Stationn/ID" + s + "/Img" + i);
+                    Image_Model image = response.ResultAs<Image_Model>();
+                    byte[] a = Convert.FromBase64String(image.Img);
+                    MemoryStream ms = new MemoryStream();
+                    ms.Write(a, 0, Convert.ToInt32(a.Length));
+                    Bitmap bm = new Bitmap(ms, false);
+                    ms.Dispose();
+                    pictureBox1.Image = bm;
+                }
+                catch
+                {
+                    Console.WriteLine("NO Pic IN Firebase ");
+                }
 
                 if (fileCountStation == s && i == fileCountPIC)
                 {
@@ -203,7 +209,7 @@ namespace CenterApp
             {
                 Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + state);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/" + state);
                 Data PicCount = StationPic.ResultAs<Data>();
 
                 Console.WriteLine("PIC IN " + state + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี

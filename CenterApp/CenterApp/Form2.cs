@@ -22,8 +22,8 @@ namespace CenterApp
         int CountPic;
         IFirebaseConfig config = new FirebaseConfig
         {
-            AuthSecret = "ftgI36IikveERXJ41pXGVWCfKdXvBnpSJIWpIkbe",
-            BasePath = "https://testprojectstation.firebaseio.com/"
+            AuthSecret = "GfvGa4YJADEQl3KFI5JXgiNzMxgZp87ms99BpiFU",
+            BasePath = "https://passenger-information-di-234e1.firebaseio.com/"
         };
         IFirebaseClient Client;
 
@@ -40,7 +40,7 @@ namespace CenterApp
             {
                 DataStation = 0
             };
-            FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
+            FirebaseResponse StationData = await Client.GetTaskAsync("Stationn/");
             Data dataCount = StationData.ResultAs<Data>();
             Console.WriteLine(" Station total : " + dataCount.DataStation);//เช็คจำนวนสถานีใน firebase
             ReDt();
@@ -65,7 +65,7 @@ namespace CenterApp
             pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
             byte[] a = ms.GetBuffer();
             string output = Convert.ToBase64String(a);
-            FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + TbIDstation.Text);
+            FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/" + TbIDstation.Text);
             Data PicCount = StationPic.ResultAs<Data>();
             int i = PicCount.CountPIC + 1;
             var Data = new Image_Model
@@ -83,8 +83,8 @@ namespace CenterApp
             {
                 CountPIC = i
             };
-            SetResponse response2 = await Client.SetTaskAsync("Station/" + TbIDstation.Text, PicStation);
-            SetResponse response3 = await Client.SetTaskAsync("Station/" + TbIDstation.Text + "/Img" + i, Data);
+            SetResponse response2 = await Client.SetTaskAsync("Stationn/" + TbIDstation.Text, PicStation);
+            SetResponse response3 = await Client.SetTaskAsync("Stationn/" + TbIDstation.Text + "/Img" + i, Data);
             Image_Model result = response3.ResultAs<Image_Model>();
             ReDt();
         }
@@ -93,7 +93,7 @@ namespace CenterApp
             dt.Rows.Clear();
             int checkloopReDt = 0;
             
-            FirebaseResponse StationData = await Client.GetTaskAsync("Station/");
+            FirebaseResponse StationData = await Client.GetTaskAsync("Stationn/");
             Data dataCount = StationData.ResultAs<Data>();
 
 
@@ -109,14 +109,14 @@ namespace CenterApp
                     break;
                 }
                 checkloopReDt++;
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Station/E" + checkloopReDt);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt);
                 Data PicCount = StationPic.ResultAs<Data>();
                 for (int x=1; x <= PicCount.CountPIC; x++)
                 {
                     try
                     {
-                        FirebaseResponse resp = await Client.GetTaskAsync("Station/E" + checkloopReDt);
-                        FirebaseResponse response = await Client.GetTaskAsync("Station/E" + checkloopReDt + "/Img" + x + "/");
+                        FirebaseResponse resp = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt);
+                        FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt + "/Img" + x + "/");
                         Data obj = resp.ResultAs<Data>();
                         Data obj2 = response.ResultAs<Data>();
 
@@ -160,7 +160,7 @@ namespace CenterApp
               //  MessageBox.Show((i+1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
                 try
                 {
-                    FirebaseResponse StationPic = await Client.GetTaskAsync("Station/" + dt.Rows[i].Cells["StationID"].Value.ToString()+"");
+                    FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString()+"");
                     Data PicCount = StationPic.ResultAs<Data>();
                     int checkImage = PicCount.CountPIC;
                     string value = dt.Rows[i].Cells["StationID"].Value.ToString();
