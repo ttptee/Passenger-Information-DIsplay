@@ -96,7 +96,7 @@ namespace CenterApp
                 ImageID = "Img" + j
             };
            
-            Client.Set("Stationn/" + TbIDstation.Text+"/Showref/"+i, "Img"+j);
+            Client.Set("Stationn/" + TbIDstation.Text+"/Showref/"+i, datashowref);
             ReDt();
         }
         private async void ReDt()
@@ -175,10 +175,49 @@ namespace CenterApp
                     Data PicCount = StationPic.ResultAs<Data>();
                     int checkImage = PicCount.CountPIC;
                     string value = dt.Rows[i].Cells["StationID"].Value.ToString();
-                    MessageBox.Show(value+ " -------- "+checkImage);
-                  //  var result = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() +"/"+ dt.Rows[i].Cells["IdImage"].Value.ToString());
-                   // var set = Client.Set("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() +"/CountPIC",checkImage-1);
-                    var Temp = Client.Get("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + 1);
+                    MessageBox.Show(value+ " -------- "+checkImage+ dt.Rows[i].Cells["IDImage"].Value.ToString());
+                    
+                    //  var result = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() +"/"+ dt.Rows[i].Cells["IdImage"].Value.ToString());
+                    // var set = Client.Set("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() +"/CountPIC",checkImage-1);
+                    for (int checkloop1=1;checkloop1<=checkImage ;checkloop1++ )
+                    {
+                        FirebaseResponse StationPicref = await Client.GetTaskAsync("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/"+checkloop1);
+                        refSlide refPIC = StationPicref.ResultAs<refSlide>();
+                        Console.WriteLine("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + checkloop1);
+                        Console.WriteLine("-----------------------------------check ref 1 : " + refPIC.ImageID);
+                        Console.WriteLine(refPIC.ImageID+"====="+ dt.Rows[i].Cells["IDImage"].Value.ToString());
+                        if (refPIC.ImageID == dt.Rows[i].Cells["IDImage"].Value.ToString())
+                        {
+                            var result = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/" + dt.Rows[i].Cells["IdImage"].Value.ToString());
+                          //  var result2 = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" +checkloop1);
+                            int Temp = checkloop1;
+                            if (Temp != checkImage)
+                            {
+                                Temp = checkloop1 + 1;
+                                for (; Temp <= checkImage; Temp++)
+                                {
+                                    Console.WriteLine("Temp1 = " + Temp);
+                                    FirebaseResponse StationPicref2 = await Client.GetTaskAsync("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + Temp);
+                                    refSlide refPIC2 = StationPicref2.ResultAs<refSlide>();
+                                   
+                                    
+                                       int Temp2 = Temp - 1;
+
+                                    Console.WriteLine("Ref2 = "+refPIC2.ImageID);
+                                    Console.WriteLine("Temp2 = " + Temp2);
+                                    var datashowref = new Image_Model
+                                    {
+                                        ImageID = refPIC2.ImageID
+                                    };
+                                    var set = Client.Set("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + Temp2, datashowref);
+                                }
+                            }
+                            var delete = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + checkImage);
+
+                            var set2 = Client.Set("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/CountPIC", checkImage - 1);
+                            Console.WriteLine("Delete!!");
+                        }
+                    }
                     //หา วิธีลบ showref
                     
                     ReDt();
