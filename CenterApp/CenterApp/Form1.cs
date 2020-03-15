@@ -101,9 +101,9 @@ namespace CenterApp
 
                 dynamicButton.Location = new Point(50, 50 + y);
 
-                dynamicButton.Text = "E" + c;
+                dynamicButton.Text = "ID" + c;
 
-                dynamicButton.Name = "E" + c;
+                dynamicButton.Name = "ID" + c;
 
                 dynamicButton.Font = new Font("Georgia", 15);
                 y = y + 60;
@@ -174,7 +174,11 @@ namespace CenterApp
 
                 }
                 //StationID.Text = Station[i].ToString();
-                StationID1.Text = "ID" + s;
+                Console.Write("Stationn/ID" + s);
+                FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/ID" + s);
+                Data NameStation = StationName.ResultAs<Data>();
+                StationID1.Text = "ID"+ s + " : " + NameStation.Name;
+                
                 i++;
                 Console.WriteLine("i = " + i);
 
@@ -223,20 +227,30 @@ namespace CenterApp
 
                 }
                 //StationID.Text = Station[i].ToString();
-                StationID1.Text = state;
+                Console.WriteLine("Stationn/" + state);
+                FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/" + state);
+                Data NameStation = StationName.ResultAs<Data>();
+                StationID1.Text = state+" : "+NameStation.Name;
                 i++;
                 Console.WriteLine("i = " + i);
 
-
-                FirebaseResponse response = await Client.GetTaskAsync("Station/" + state + "/Img" + i + "/");
-                Console.WriteLine("Station/" + state + "/Img" + i + "/Img/");
-                Image_Model image = response.ResultAs<Image_Model>();
-                byte[] a = Convert.FromBase64String(image.Img);
-                MemoryStream ms = new MemoryStream();
-                ms.Write(a, 0, Convert.ToInt32(a.Length));
-                Bitmap bm = new Bitmap(ms, false);
-                ms.Dispose();
-                pictureBox1.Image = bm;
+                try
+                {
+                    FirebaseResponse response = await Client.GetTaskAsync("Stationn/" + state + "/Img" + i + "/");
+                    Console.WriteLine("Stationn/" + state + "/Img" + i + "/Img/");
+                    Image_Model image = response.ResultAs<Image_Model>();
+                    byte[] a = Convert.FromBase64String(image.Img);
+                    MemoryStream ms = new MemoryStream();
+                    ms.Write(a, 0, Convert.ToInt32(a.Length));
+                    Bitmap bm = new Bitmap(ms, false);
+                    ms.Dispose();
+                    pictureBox1.Image = bm;
+                }
+                catch
+                {
+                    Console.Write("No PIC IN FireBase");
+                }
+               
 
 
 

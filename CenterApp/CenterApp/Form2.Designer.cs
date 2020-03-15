@@ -174,7 +174,8 @@
             "ID1",
             "ID2",
             "ID3",
-            "ID4"});
+            "ID4",
+            "ID5"});
             this.TbIDstation.Location = new System.Drawing.Point(162, 53);
             this.TbIDstation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TbIDstation.Name = "TbIDstation";
