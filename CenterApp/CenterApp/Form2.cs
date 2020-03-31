@@ -213,7 +213,7 @@ namespace CenterApp
                                 }
                             }
                             var delete = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Showref/" + checkImage);
-
+                            var delete2 = Client.Delete("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/Img" + checkImage);
                             var set2 = Client.Set("Stationn/" + dt.Rows[i].Cells["StationID"].Value.ToString() + "/CountPIC", checkImage - 1);
                             Console.WriteLine("Delete!!");
                         }
