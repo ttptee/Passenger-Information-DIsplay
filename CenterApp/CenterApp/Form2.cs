@@ -120,14 +120,14 @@ namespace CenterApp
                     break;
                 }
                 checkloopReDt++;
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/T00" + checkloopReDt);
                 Data PicCount = StationPic.ResultAs<Data>();
                 for (int x=1; x <= PicCount.CountPIC; x++)
                 {
                     try
                     {
-                        FirebaseResponse resp = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt);
-                        FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + checkloopReDt + "/Img" + x + "/");
+                        FirebaseResponse resp = await Client.GetTaskAsync("Stationn/T00" + checkloopReDt);
+                        FirebaseResponse response = await Client.GetTaskAsync("Stationn/T00" + checkloopReDt + "/Img" + x + "/");
                         Data obj = resp.ResultAs<Data>();
                         Data obj2 = response.ResultAs<Data>();
 

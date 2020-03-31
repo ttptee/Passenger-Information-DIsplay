@@ -147,77 +147,79 @@ namespace CenterApp
 
         private async void timer1_Tick(object sender, EventArgs e)
         {
-
-           
-
-
-            ////////////////////////normal state//////////////////////////////
-
-            if (state == "N")
-            {
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + s);
-                Data PicCount = StationPic.ResultAs<Data>();
-
-               // Console.WriteLine("PIC IN E" + s + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
-                int fileCountPIC = PicCount.CountPIC;
+            FirebaseResponse Track = await Client.GetTaskAsync("Train Status/NSTDA01");
+            Data TrackTrain = Track.ResultAs<Data>();
+            Console.WriteLine(TrackTrain.TrainTrack);
 
 
 
-                if (i == fileCountPIC)
-                {
-                    i = 0;
-                    if (s < fileCountStation)
-                    {
-                        s++;
-                    }
-                   Console.WriteLine(">>>>>>>>>>>>>>>>Out E:" + s + " i =" + i);
+            //////////////////////////normal state//////////////////////////////
 
-                }
-                //StationID.Text = Station[i].ToString();
-                Console.Write("Stationn/ID" + s);
-                FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/ID" + s);
-                Data NameStation = StationName.ResultAs<Data>();
-                StationID1.Text = "ID"+ s + " : " + NameStation.Name;
+            //if (state == "N")
+            //{
+            //    FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/ID" + s);
+            //    Data PicCount = StationPic.ResultAs<Data>();
+
+            //   // Console.WriteLine("PIC IN E" + s + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
+            //    int fileCountPIC = PicCount.CountPIC;
+
+
+
+            //    if (i == fileCountPIC)
+            //    {
+            //        i = 0;
+            //        if (s < fileCountStation)
+            //        {
+            //            s++;
+            //        }
+            //       Console.WriteLine(">>>>>>>>>>>>>>>>Out E:" + s + " i =" + i);
+
+            //    }
+            //    //StationID.Text = Station[i].ToString();
+            //    Console.Write("Stationn/ID" + s);
+            //    FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/ID" + s);
+            //    Data NameStation = StationName.ResultAs<Data>();
+            //    StationID1.Text = "ID"+ s + " : " + NameStation.Name;
                 
-                i++;
-                Console.WriteLine("i = " + i);
+            //    i++;
+            //    Console.WriteLine("i = " + i);
 
-                try
-                {
-                    FirebaseResponse resPicref = await Client.GetTaskAsync("Stationn/ID" + s +"/Showref/"+i+"/");
-                    Data IDImg = resPicref.ResultAs<Data>();
-                    string IDimgRef = IDImg.ImageID;
+            //    try
+            //    {
+            //        FirebaseResponse resPicref = await Client.GetTaskAsync("Stationn/ID" + s +"/Showref/"+i+"/");
+            //        Data IDImg = resPicref.ResultAs<Data>();
+            //        string IDimgRef = IDImg.ImageID;
 
-                    FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + s + "/" + IDimgRef + "/");
-                  Console.WriteLine("Stationn/ID" + s + "/Img" + i);
-                    Image_Model image = response.ResultAs<Image_Model>();
-                    byte[] a = Convert.FromBase64String(image.Img);
-                    MemoryStream ms = new MemoryStream();
-                    ms.Write(a, 0, Convert.ToInt32(a.Length));
-                    Bitmap bm = new Bitmap(ms, false);
-                    ms.Dispose();
-                    pictureBox1.Image = bm;
-                }
-                catch
-                {
-                    Console.WriteLine("NO Pic IN Firebase ");
-                }
+            //        FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + s + "/" + IDimgRef + "/");
+            //      Console.WriteLine("Stationn/ID" + s + "/Img" + i);
+            //        Image_Model image = response.ResultAs<Image_Model>();
+            //        byte[] a = Convert.FromBase64String(image.Img);
+            //        MemoryStream ms = new MemoryStream();
+            //        ms.Write(a, 0, Convert.ToInt32(a.Length));
+            //        Bitmap bm = new Bitmap(ms, false);
+            //        ms.Dispose();
+            //        pictureBox1.Image = bm;
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("NO Pic IN Firebase ");
+            //    }
 
-                if (fileCountStation == s && i == fileCountPIC)
-                {
-                    s = 1;
-                    i = 0;
-                    Console.WriteLine("Reset!!");
-                }
-                //////////////////////////////////////////////////////////////////////////////////////////
+            //    if (fileCountStation == s && i == fileCountPIC)
+            //    {
+            //        s = 1;
+            //        i = 0;
+            //        Console.WriteLine("Reset!!");
+            //    }
+            //    //////////////////////////////////////////////////////////////////////////////////////////
 
-            }
-            ///////////////////////////////////////////////////////////////////////
-             else
-            {
+            //}
+            /////////////////////////////////////////////////////////////////////////
+            // else
+            //{
                // Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/" + state);
+                FirebaseResponse StationPic = await Client.GetTaskAsync("Stationn/" + TrackTrain.TrainTrack);
                 Data PicCount = StationPic.ResultAs<Data>();
 
                 //Console.WriteLine("PIC IN " + state + " is " + PicCount.CountPIC);//เช็ครูปใน firebase แต่ละสถานี
@@ -232,7 +234,7 @@ namespace CenterApp
                 }
                 //StationID.Text = Station[i].ToString();
                 Console.WriteLine("Stationn/" + state);
-                FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/" + state);
+                FirebaseResponse StationName = await Client.GetTaskAsync("Stationn/" + TrackTrain.TrainTrack);
                 Data NameStation = StationName.ResultAs<Data>();
                 StationID1.Text = state+" : "+NameStation.Name;
                 i++;
@@ -240,11 +242,11 @@ namespace CenterApp
 
                 try
                 {
-                    FirebaseResponse resPicref = await Client.GetTaskAsync("Stationn/ID" + s + "/Showref/" + i + "/");
+                    FirebaseResponse resPicref = await Client.GetTaskAsync("Stationn/" + TrackTrain.TrainTrack + "/Showref/" + i + "/");
                     Data IDImg = resPicref.ResultAs<Data>();
                     string IDimgRef = IDImg.ImageID;
 
-                    FirebaseResponse response = await Client.GetTaskAsync("Stationn/ID" + s + "/" + IDimgRef + "/");
+                    FirebaseResponse response = await Client.GetTaskAsync("Stationn/" + TrackTrain.TrainTrack + "/" + IDimgRef + "/");
                     //Console.WriteLine("Stationn/" + state + "/Img" + i + "/Img/");
                     Image_Model image = response.ResultAs<Image_Model>();
                     byte[] a = Convert.FromBase64String(image.Img);
@@ -269,7 +271,7 @@ namespace CenterApp
                     Console.WriteLine("Reset!!");
                 }
             }
-        }
+        //}
 
         private void textBox1_TextChanged(object sender, EventArgs e)
             {

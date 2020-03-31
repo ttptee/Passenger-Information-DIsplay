@@ -49,49 +49,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 53);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
+            this.label1.Size = new System.Drawing.Size(92, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "รหัสสถานี(E...)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 205);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(30, 131);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 25);
+            this.label2.Size = new System.Drawing.Size(49, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "ประเภท";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(50, 253);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(33, 162);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 25);
+            this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "รูปภาพ";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(18, 311);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 199);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(362, 305);
+            this.pictureBox1.Size = new System.Drawing.Size(241, 195);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // SentBtn
             // 
-            this.SentBtn.Location = new System.Drawing.Point(98, 625);
-            this.SentBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SentBtn.Location = new System.Drawing.Point(65, 400);
             this.SentBtn.Name = "SentBtn";
-            this.SentBtn.Size = new System.Drawing.Size(174, 59);
+            this.SentBtn.Size = new System.Drawing.Size(116, 38);
             this.SentBtn.TabIndex = 7;
             this.SentBtn.Text = "ส่ง";
             this.SentBtn.UseVisualStyleBackColor = true;
@@ -107,12 +102,11 @@
             this.Type,
             this.Image,
             this.DeleteRowBtn});
-            this.dt.Location = new System.Drawing.Point(420, 48);
-            this.dt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dt.Location = new System.Drawing.Point(280, 31);
             this.dt.Name = "dt";
             this.dt.RowHeadersWidth = 82;
             this.dt.RowTemplate.Height = 24;
-            this.dt.Size = new System.Drawing.Size(676, 553);
+            this.dt.Size = new System.Drawing.Size(451, 354);
             this.dt.TabIndex = 8;
             this.dt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_CellContentClick);
             // 
@@ -121,21 +115,21 @@
             this.StationID.HeaderText = "StationID";
             this.StationID.MinimumWidth = 10;
             this.StationID.Name = "StationID";
-            this.StationID.Width = 144;
+            this.StationID.Width = 94;
             // 
             // IDImage
             // 
             this.IDImage.HeaderText = "IDImage";
             this.IDImage.MinimumWidth = 10;
             this.IDImage.Name = "IDImage";
-            this.IDImage.Width = 135;
+            this.IDImage.Width = 88;
             // 
             // Type
             // 
             this.Type.HeaderText = "Type";
             this.Type.MinimumWidth = 10;
             this.Type.Name = "Type";
-            this.Type.Width = 105;
+            this.Type.Width = 69;
             // 
             // Image
             // 
@@ -143,7 +137,7 @@
             this.Image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Image.MinimumWidth = 10;
             this.Image.Name = "Image";
-            this.Image.Width = 76;
+            this.Image.Width = 52;
             // 
             // DeleteRowBtn
             // 
@@ -152,14 +146,13 @@
             this.DeleteRowBtn.Name = "DeleteRowBtn";
             this.DeleteRowBtn.Text = "Delete";
             this.DeleteRowBtn.ToolTipText = "Delete";
-            this.DeleteRowBtn.Width = 80;
+            this.DeleteRowBtn.Width = 55;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(162, 253);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(108, 162);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 48);
+            this.button1.Size = new System.Drawing.Size(100, 31);
             this.button1.TabIndex = 4;
             this.button1.Text = "เลือกรูป";
             this.button1.UseVisualStyleBackColor = true;
@@ -169,37 +162,35 @@
             // 
             this.TbIDstation.AllowDrop = true;
             this.TbIDstation.FormattingEnabled = true;
-            this.TbIDstation.ItemHeight = 25;
+            this.TbIDstation.ItemHeight = 16;
             this.TbIDstation.Items.AddRange(new object[] {
-            "ID1",
-            "ID2",
-            "ID3",
-            "ID4",
-            "ID5"});
-            this.TbIDstation.Location = new System.Drawing.Point(162, 53);
-            this.TbIDstation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            "T001",
+            "T002",
+            "T003",
+            "T004",
+            "T005"});
+            this.TbIDstation.Location = new System.Drawing.Point(108, 34);
             this.TbIDstation.Name = "TbIDstation";
-            this.TbIDstation.Size = new System.Drawing.Size(178, 129);
+            this.TbIDstation.Size = new System.Drawing.Size(120, 84);
             this.TbIDstation.TabIndex = 9;
             // 
             // TypeTB
             // 
             this.TypeTB.FormattingEnabled = true;
-            this.TypeTB.ItemHeight = 25;
+            this.TypeTB.ItemHeight = 16;
             this.TypeTB.Items.AddRange(new object[] {
             "สถานที่ท่องเที่ยว",
             "โฆษณา"});
-            this.TypeTB.Location = new System.Drawing.Point(162, 194);
-            this.TypeTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TypeTB.Location = new System.Drawing.Point(108, 124);
             this.TypeTB.Name = "TypeTB";
-            this.TypeTB.Size = new System.Drawing.Size(178, 54);
+            this.TypeTB.Size = new System.Drawing.Size(120, 36);
             this.TypeTB.TabIndex = 10;
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 703);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.TypeTB);
             this.Controls.Add(this.TbIDstation);
             this.Controls.Add(this.dt);
@@ -209,7 +200,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);

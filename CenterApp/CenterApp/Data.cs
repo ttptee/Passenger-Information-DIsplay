@@ -12,6 +12,7 @@
         public string ImageID { get; set; }
 
         public string TypeName { get; set; }
+        public string TrainTrack { get; set; }
 
 
 
